@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  {% if not session.authenticated %}
+  <a href="{{ eve.auth_uri(scopes=['publicData'], state=csrf_token()) }}">Log In</a>
+  {% else %}
+  <a href="{{ url_for('logout') }}">Log Out {{ session.current_character }}</a>
+  {% endif %}
+  <table>
+    <tr>
+      <th>Queue Position</th>
+      <th>Character Name</th>
+    </tr>
+    {% for char_name in queue %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ char_name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </body>
+</html>
