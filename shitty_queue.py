@@ -59,6 +59,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.config['SECRET_KEY'] = 'foobar'
+    app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
     app.run(debug=True)
 
